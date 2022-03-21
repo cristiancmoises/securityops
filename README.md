@@ -1,7 +1,10 @@
-# Securityops
+# Securityops - Windows 11 - NO TPM 
 Windows 11 - SecurityOps Version 
 
 *After a long period of testing and recording, I finish!*
+
+![Security Ops](https://user-images.githubusercontent.com/86272521/159198160-8732fa80-4108-4fa7-b402-f81ae5f3479c.png)
+
 
 <table border="1" cellpadding="1" cellspacing="0" style="width:558px">
 	<tbody>
