@@ -11,9 +11,9 @@ Windows 11 - SecurityOps Version
 		<tr>
 			<td style="width:550px">
 			<ul>
-				<li style="text-align:justify">Remove Telemetry and Ads<br/></li>
-				<li style="text-align:justify">Remove Windows Apps (DEBLOATER)</li>
-				<li style="text-align:justify">Enable Paging File and set to 12GB-16GB</li>
+				<li style="text-align:justify">Removed Telemetry and Ads<br/></li>
+				<li style="text-align:justify">Removed Windows Apps (No Bloatwares!)</li>
+				<li style="text-align:justify">Enabled Paging File and set to 12GB-16GB</li>
 				<li style="text-align:justify">Auto Install Programs using Chocolatey</li>
 				<li style="text-align:justify">Windows Auto Installable (pt-br)</li>
         <li style="text-align:justify">Windows 11 No TPM</li>
