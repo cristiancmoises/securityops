@@ -5,7 +5,9 @@ Windows 11 - Versão SecurityOps
 
 ![Operações de segurança](https://user-images.githubusercontent.com/86272521/159198160-8732fa80-4108-4fa7-b402-f81ae5f3479c.png)
 
-
+    Última Versão: 1.0
+    Data Lançamento: 20-03-2022
+          (◍⁀‿⁀◍)ノ
 <table border="1" cellpadding="1" cellspacing="0" style="width:600px">
 <tbody>
 <tr>
