@@ -1,8 +1,9 @@
 # Securityops - Windows 11 - NO TPM 
 Windows 11 - SecurityOps Version 
 
-*After a long period of testing and recording, I finish!*
+*After a long period of testing and recording, i finished!*
 
+Para a versão em português deste readme clique <a href="https://github.com/cristiancmoises/securityops/blob/main/pt-br.md" /> aqui 
 ![Security Ops](https://user-images.githubusercontent.com/86272521/159198160-8732fa80-4108-4fa7-b402-f81ae5f3479c.png)
 
 
