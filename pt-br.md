@@ -6,7 +6,7 @@ Windows 11 - Versão SecurityOps
 ![Operações de segurança](https://user-images.githubusercontent.com/86272521/159198160-8732fa80-4108-4fa7-b402-f81ae5f3479c.png)
 
 
-<table border="1" cellpadding="1" cellspacing="0" style="width:558px">
+<table border="1" cellpadding="1" cellspacing="0" style="width:600px">
 <tbody>
 <tr>
 <td style="text-align:center; width:550px"><strong>Recursos incríveis:</strong></td>
