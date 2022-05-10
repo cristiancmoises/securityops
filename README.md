@@ -45,5 +45,5 @@ Full Video on YT: https://lnkd.in/dnJzFRwS
 --------------------------------------------------- -
 Link to the iso on MediaFire: https://lnkd.in/daAnWGau
 --------------------------------------------------- -
-Torrent: magnet:?xt=urn:btih:d933e3cd53c0c407f75f8deb180d0fb8f71e853f&xt=urn:btmh:12207cc7b4ab35b004604906ca87fbee1f3b5c8b7da2bab3153041fdab439060fc7c&dn=SecurityOps.iso 
+Torrent: magnet:?xt=urn:btih:d933e3cd53c0c407f75f8deb180d0fb8f71e853f&xt=urn:btmh:12207cc7b4ab35b004604906ca87fbee1f3b5c8b7da2bab3153041fdab439060fc7c&dn=SecurityOps.iso
 --------------------------------------------------- -
