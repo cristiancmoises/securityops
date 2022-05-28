@@ -14,7 +14,7 @@ Windows 11 - Versão do SecurityOps
 > Usuário: User
 > Senha: nopassword
 -------------------------------------------------- - -
-NOVO *V.2 Vídeo completo no YT (versão offline): https://urlday.cc/securityopsv2YT*
+NOVO *V.2 Vídeo completo no YT: https://urlday.cc/securityopsv2YT*
 -------------------------------------------------- ----------------------------
 Windows 11: https://urlday.cc/securityopsV2
 -------------------------------------------------- ----------------------------
