@@ -18,7 +18,7 @@ NOVO *V.2 Vídeo completo no YT: https://urlday.cc/securityopsv2YT*
 -------------------------------------------------- ----------------------------
 Windows 11: https://urlday.cc/securityopsV2
 -------------------------------------------------- ----------------------------
-Softwares: https://urlday.cc/seopssoftwares
+Softwares: https://urlday.cc/secopssoftwares
 -------------------------------------------------- ----------------------------
 # Securityops V.1 - Windows 11 - Sem TPM (versão antiga)
 -------------------------------------------------- - -
