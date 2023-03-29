@@ -109,4 +109,4 @@ Torrent: magnet:?xt=urn:btih:d933e3cd53c0c407f75f8deb180d0fb8f71e853f&xt=urn:btm
 </td>
 </tr>
 </table> 
-
+ <a href="https://www.buymeacoffee.com/cristiancmoises" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Me compre um Caf" style="height: 60px !important;width: 217px !important;" ></a>
