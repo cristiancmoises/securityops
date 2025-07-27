@@ -23297,6 +23297,9 @@ ff02::3 ip6-allhosts
 
 # [xhamster.com]
 0.0.0.0 collector.xhamster.com
+0.0.0.0 xhamster.com
+0.0.0.0 x.com
+0.0.0.0 analvids.com
 
 # [xiaomi.com]
 0.0.0.0 log.ad.xiaomi.com
