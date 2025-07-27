@@ -1,0 +1,5 @@
+0.0.0.0 analytics.google.com
+0.0.0.0 sessions.bugsnag.com
+0.0.0.0 browser.sentry-cdn.com
+0.0.0.0 appmetrica.yandex.ru
+0.0.0.0 adservice.google.com
