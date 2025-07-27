@@ -18418,6 +18418,8 @@
 0.0.0.0 apps-2658449717779627.apps.fbsbx.com
 0.0.0.0 z-p3-lookaside.fbsbx.com
 0.0.0.0 nortia.fbsbx.com
+0.0.0.0 x.com
+0.0.0.0 *x.com
 0.0.0.0 apps-953716355740602.apps.fbsbx.com
 0.0.0.0 apps-912888159611720.apps.fbsbx.com
 0.0.0.0 apps-1165716920631702.apps.fbsbx.com
