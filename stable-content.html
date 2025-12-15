@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Ops Popup</title>
+    <style>
+        body {
+            background-color: #000000 !important;
+            color: #90EE90 !important;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 10px;
+            width: 300px;
+            min-height: 400px;
+        }
+        h1 {
+            font-size: 24px;
+            margin: 0 0 10px;
+            text-align: center;
+        }
+        .version {
+            font-size: 12px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .section h2 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        .stat-box {
+            background-color: #1a1a1a;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .stat-box span {
+            display: block;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .toggle-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .toggle-container label {
+            font-size: 14px;
+        }
+        select {
+            background-color: #1a1a1a;
+            color: inherit;
+            border: 1px solid #333333;
+            padding: 5px;
+            width: 100%;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #2a2a2a;
+            color: inherit;
+            border: 1px solid #333333;
+            padding: 8px;
+            width: 100%;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #3a3a3a;
+            color: #FFFFFF;
+        }
+        .status-active { color: #90EE90; }
+        .status-inactive { color: #FF6666; }
+        .status-connected { color: #90EE90; }
+        .status-disconnected { color: #FF6666; }
+        .status-message {
+            display: none;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .status-success { background-color: #1a3c1a; }
+        .status-error { background-color: #3c1a1a; }
+        .status-info { background-color: #1a2a3c; }
+    </style>
+</head>
+<body>
+    <h1>Security Ops</h1>
+    <div class="version">v3.3.3</div>
+
+    <div class="section">
+        <h2>BLOCKING STATISTICS</h2>
+        <div class="stats-grid">
+            <div class="stat-box">
+                <span id="blocked-count">0</span>
+                Total Blocked
+            </div>
+            <div class="stat-box">
+                <span id="ads-blocked">0</span>
+                Ads
+            </div>
+            <div class="stat-box">
+                <span id="trackers-blocked">0</span>
+                Trackers
+            </div>
+            <div class="stat-box">
+                <span id="malware-blocked">0</span>
+                Malware
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>QUICK CONTROLS</h2>
+        <div class="toggle-container">
+            <label>Block Ads</label>
+            <input type="checkbox" id="block-ads-toggle" checked>
+        </div>
+        <div class="toggle-container">
+            <label>Block Trackers</label>
+            <input type="checkbox" id="block-trackers-toggle" checked>
+        </div>
+        <div class="toggle-container">
+            <label>Black Theme</label>
+            <input type="checkbox" id="black-theme-toggle" checked>
+        </div>
+        <div class="toggle-container">
+            <label>Font Color</label>
+            <select id="font-color-select">
+                <option value="soft-green">Soft Green</option>
+                <option value="soft-blue">Soft Blue</option>
+                <option value="soft-yellow">Soft Yellow</option>
+                <option value="white">White</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>TOR PROXY CONNECTION</h2>
+        <button id="torando-btn">TORANDO</button>
+        <div id="torando-status" class="status-inactive">Status: INACTIVE</div>
+    </div>
+
+    <div class="section">
+        <h2>PROXY STATUS</h2>
+        <div class="toggle-container">
+            <label>Proxy Enabled</label>
+            <input type="checkbox" id="proxy-toggle">
+        </div>
+        <div id="proxy-status" class="status-disconnected">Disconnected</div>
+        <button id="disconnect-proxy-btn" style="display: none;">Disconnect Proxy</button>
+    </div>
+
+    <div class="section">
+        <button id="update-filters-btn">Update Filters</button>
+        <button id="clear-stats-btn">Clear Statistics</button>
+        <button id="open-settings-btn">Open Settings</button>
+    </div>
+
+    <div id="status-message" class="status-message"></div>
+
+    <script src="stable-popup.js"></script>
+</body>
+</html>

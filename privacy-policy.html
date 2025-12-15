@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Security Ops Extension</title>
+    <meta name="description" content="Security Ops Privacy Policy - Learn how we protect your privacy and what data we collect (spoiler: we don't collect any personal data).">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self';">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2d2d2d 100%);
+            color: #ffffff;
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        .header {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px 0;
+            margin-bottom: 40px;
+        }
+        
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: url('sec.svg') no-repeat center;
+            background-size: contain;
+            border-radius: 8px;
+        }
+        
+        .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: #90EE90;
+        }
+        
+        .back-link {
+            color: #87CEEB;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .back-link:hover {
+            color: #fff;
+        }
+        
+        /* Main Content */
+        .main-content {
+            padding: 40px 0 80px;
+        }
+        
+        .page-title {
+            font-size: 3rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #90EE90 0%, #32CD32 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .page-subtitle {
+            font-size: 1.2rem;
+            text-align: center;
+            color: #ccc;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .last-updated {
+            text-align: center;
+            color: #888;
+            margin-bottom: 50px;
+            font-style: italic;
+        }
+        
+        .content-section {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            transition: all 0.3s;
+        }
+        
+        .content-section:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(144, 238, 144, 0.3);
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #90EE90;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .section-icon {
+            width: 24px;
+            height: 24px;
+            background: #90EE90;
+            border-radius: 6px;
+            display: inline-block;
+        }
+        
+        .section-content {
+            color: #ccc;
+            font-size: 1.1rem;
+        }
+        
+        .section-content p {
+            margin-bottom: 15px;
+        }
+        
+        .section-content ul {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+        
+        .section-content li {
+            margin-bottom: 8px;
+        }
+        
+        .highlight-box {
+            background: rgba(144, 238, 144, 0.1);
+            border: 2px solid #90EE90;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .highlight-title {
+            font-weight: bold;
+            color: #90EE90;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .warning-box {
+            background: rgba(255, 193, 7, 0.1);
+            border: 2px solid #ffc107;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .warning-title {
+            font-weight: bold;
+            color: #ffc107;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .info-box {
+            background: rgba(135, 206, 235, 0.1);
+            border: 2px solid #87CEEB;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .info-title {
+            font-weight: bold;
+            color: #87CEEB;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        
+        .privacy-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .privacy-table th,
+        .privacy-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .privacy-table th {
+            background: rgba(144, 238, 144, 0.2);
+            color: #90EE90;
+            font-weight: bold;
+        }
+        
+        .privacy-table td {
+            color: #ccc;
+        }
+        
+        .contact-section {
+            background: linear-gradient(135deg, #2d1b69 0%, #11998e 100%);
+            border: 2px solid #90EE90;
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .contact-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+        
+        .contact-text {
+            color: #ccc;
+            margin-bottom: 20px;
+        }
+        
+        .contact-email {
+            color: #90EE90;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        .contact-email:hover {
+            text-decoration: underline;
+        }
+        
+        /* Footer */
+        .footer {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 30px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: #888;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .footer-link {
+            color: #87CEEB;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .footer-link:hover {
+            color: #fff;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 2.2rem;
+            }
+            
+            .content-section {
+                padding: 25px;
+            }
+            
+            .nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+        
+        /* Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+        
+        /* High contrast mode */
+        @media (prefers-contrast: high) {
+            .content-section,
+            .highlight-box,
+            .warning-box,
+            .info-box {
+                border-width: 3px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="index.html" class="logo">
+                    <div class="logo-icon"></div>
+                    <div class="logo-text">Security Ops</div>
+                </a>
+                <a href="index.html" class="back-link">← Back to Home</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <h1 class="page-title">Privacy Policy</h1>
+            <p class="page-subtitle">
+                Your privacy is our top priority. Learn how Security Ops protects your data and respects your privacy.
+            </p>
+            <p class="last-updated">Last Updated: January 14, 2025</p>
+
+            <div class="content-section">
+                <h2 class="section-title">
+                    <span class="section-icon"></span>
+                    Privacy-First Approach
+                </h2>
+                <div class="section-content">
+                    <div class="highlight-box">
+                        <div class="highlight-title">Zero Data Collection</div>
+                        <p>Security Ops does not collect, store, transmit, or share any personal data, browsing history, or user information. Your privacy is completely protected.</p>
+                    </div>
+                    
+                    <p>
+                        Security Ops is designed with privacy as the fundamental principle. Unlike many other browser extensions 
+                        that collect user data for analytics, advertising, or other purposes, Security Ops operates entirely 
+                        locally on your device without any external data transmission.
+                    </p>
+                    
+                    <p>
+                        This privacy policy explains our commitment to protecting your privacy and outlines the technical 
+                        measures we implement to ensure your data remains secure and private.
+                    </p>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2 class="section-title">
+                    <span class="section-icon"></span>
+                    Data We Do NOT Collect
+                </h2>
+                <div class="section-content">
+                    <p>Security Ops explicitly does not collect any of the following information:</p>
+                    
+                    <ul>
+                        <li><strong>Personal Information:</strong> Names, email addresses, phone numbers, or any personally identifiable information</li>
+                        <li><strong>Browsing History:</strong> Websites visited, pages viewed, or browsing patterns</li>
+                        <li><strong>Search Queries:</strong> Search terms or queries entered in search engines</li>
+                        <li><strong>Location Data:</strong> Geographic location, IP addresses, or location-based information</li>
+                        <li><strong>Device Information:</strong> Device identifiers, hardware specifications, or system information</li>
+                        <li><strong>Usage Analytics:</strong> Extension usage patterns, feature usage, or behavioral data</li>
+                        <li><strong>Cookies or Tracking:</strong> No cookies, tracking pixels, or similar technologies are used</li>
+                        <li><strong>Network Traffic:</strong> Content of web requests, responses, or network communications</li>
+                    </ul>
+                    
+                    <div class="info-box">
+                        <div class="info-title">Technical Implementation</div>
+                        <p>Our extension operates entirely within your browser's local environment. All processing, filtering, and blocking decisions are made locally without any external communication.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2 class="section-title">
+                    <span class="section-icon"></span>
+                    Local Data Storage
+                </h2>
+                <div class="section-content">
+                    <p>
+                        Security Ops stores certain configuration data locally on your device to maintain your preferences 
+                        and settings. This data never leaves your device and is not transmitted to any external servers.
+                    </p>
+                    
+                    <div class="table-container">
+                        <table class="privacy-table">
+                            <thead>
+                                <tr>
+                                    <th>Data Type</th>
+                                    <th>Purpose</th>
+                                    <th>Storage Location</th>
+                                    <th>Transmission</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Extension Settings</td>
+                                    <td>Store user preferences (blocking categories, theme settings)</td>
+                                    <td>Browser Local Storage</td>
+                                    <td>Never transmitted</td>
+                                </tr>
+                                <tr>
+                                    <td>Proxy Configuration</td>
+                                    <td>Store proxy server settings for TORANDO and custom proxies</td>
+                                    <td>Browser Local Storage</td>
+                                    <td>Never transmitted</td>
+                                </tr>
+                                <tr>
+                                    <td>Whitelist Domains</td>
+                                    <td>Store user-defined whitelisted domains</td>
+                                    <td>Browser Local Storage</td>
+                                    <td>Never transmitted</td>
+                                </tr>
+                                <tr>
+                                    <td>Blocking Statistics</td>
+                                    <td>Count blocked requests for user information</td>
+                                    <td>Browser Local Storage</td>
+                                    <td>Never transmitted</td>
+                                </tr>
+                                <tr>
+                                    <td>Blocklist Cache</td>
+                                    <td>Cache downloaded blocklists for offline operation</td>
+                                    <td>Browser Local Storage</td>
+                                    <td>Never transmitted</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="warning-box">
+                        <div class="warning-title">Data Removal</div>
+                        <p>All locally stored data can be completely removed by uninstalling the extension or clearing your browser's extension data. No traces remain on external servers.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2 class="section-title">
+                    <span class="section-icon"></span>
+                    Blocklist Updates
+                </h2>
+                <div class="section-content">
+                    <p>
+                        Security Ops downloads blocklists from reputable sources to maintain up-to-date protection against 
+                        ads, trackers, and malware. These downloads are performed anonymously and do not include any 
+                        identifying information.
+                    </p>
+                    
+                    <h3 style="color: #90EE90; margin: 20px 0 10px 0;">Blocklist Sources:</h3>
+                    <ul>
+                        <li><strong>Mullvad VPN DNS Blocklists:</strong> Official blocklists for ads, trackers, malware, gambling, adult content, and social media</li>
+                        <li><strong>EasyList:</strong> Community-maintained ad blocking filters</li>
+                        <li><strong>EasyPrivacy:</strong> Privacy protection filters for tracker blocking</li>
+                        <li><strong>Additional Security Lists:</strong> Malware and phishing protection lists</li>
+                    </ul>
+                    
+                    <div class="info-box">
+                        <div class="info-title">Anonymous Downloads</div>
+                        <p>Blocklist updates are downloaded using standard HTTP requests without any user identification, tracking headers, or personal information. The requests are indistinguishable from regular web traffic.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2 class="section-title">
+                    <span class="section-icon"></span>
+                    IP Address Display
+                </h2>
+                <div class="section-content">
+                    <p>
+                        Security Ops includes an optional feature to display your current IP address in the popup interface. 
+                        This feature is designed to help users verify their proxy or VPN connections.
+                    </p>
+                    
+                    <h3 style="color: #90EE90; margin: 20px 0 10px 0;">How IP Detection Works:</h3>
+                    <ul>
+                        <li>IP address is retrieved from public IP detection services</li>
+                        <li>Multiple fallback services are used for reliability</li>
+                        <li>No personal information is sent with IP detection requests</li>
+                        <li>IP address is displayed locally and never stored or transmitted</li>
+                        <li>Feature can be completely disabled in settings</li>
+                    </ul>
+                    
+                    <div class="warning-box">
+                        <div class="warning-title">User Control</div>
+                        <p>The IP display feature is entirely optional and can be disabled at any time. When disabled, no IP detection requests are made.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2 class="section-title">
+                    <span class="section-icon"></span>
+                    Third-Party Services
+                </h2>
+                <div class="section-content">
+                    <p>
+                        Security Ops interacts with certain third-party services to provide its functionality. These 
+                        interactions are designed to maintain your privacy and anonymity.
+                    </p>
+                    
+                    <h3 style="color: #90EE90; margin: 20px 0 10px 0;">Service Interactions:</h3>
+                    
+                    <div class="table-container">
+                        <table class="privacy-table">
+                            <thead>
+                                <tr>
+                                    <th>Service</th>
+                                    <th>Purpose</th>
+                                    <th>Data Sent</th>
+                                    <th>Privacy Protection</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Blocklist Providers</td>
+                                    <td>Download updated blocking rules</td>
+                                    <td>Standard HTTP request only</td>
+                                    <td>No identifying information</td>
+                                </tr>
+                                <tr>
+                                    <td>IP Detection Services</td>
+                                    <td>Display current IP (optional)</td>
+                                    <td>Standard HTTP request only</td>
+                                    <td>No personal data, can be disabled</td>
+                                </tr>
+                                <tr>
+                                    <td>Search Engine Redirects</td>
+                                    <td>Redirect to privacy-focused alternatives</td>
+                                    <td>Search query only</td>
+                                    <td>Redirected to privacy-focused services</td>
+                                </tr>
+                                <tr>
+                                    <td>Proxy Services</td>
+                                    <td>Route traffic through user-configured proxies</td>
+                                    <td>Web traffic as configured</td>
+                                    <td>User-controlled proxy configuration</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2 class="section-title">
+                    <span class="section-icon"></span>
+                    Security Measures
+                </h2>
+                <div class="section-content">
+                    <p>
+                        Security Ops implements multiple security measures to protect your privacy and ensure the 
+                        integrity of the extension.
+                    </p>
+                    
+                    <h3 style="color: #90EE90; margin: 20px 0 10px 0;">Technical Security:</h3>
+                    <ul>
+                        <li><strong>Local Processing:</strong> All filtering and blocking decisions are made locally</li>
+                        <li><strong>No External Communication:</strong> No analytics, telemetry, or tracking communications</li>
+                        <li><strong>Secure Storage:</strong> Settings stored using browser's secure storage APIs</li>
+                        <li><strong>Content Security Policy:</strong> Strict CSP prevents code injection attacks</li>
+                        <li><strong>Minimal Permissions:</strong> Only requests necessary browser permissions</li>
+                        <li><strong>Open Source Principles:</strong> Transparent operation and code review</li>
+                    </ul>
+                    
+                    <div class="highlight-box">
+                        <div class="highlight-title">Privacy by Design</div>
+                        <p>Security Ops is built with privacy by design principles, ensuring that privacy protection is embedded into every aspect of the extension's architecture and operation.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2 class="section-title">
+                    <span class="section-icon"></span>
+                    User Rights and Control
+                </h2>
+                <div class="section-content">
+                    <p>
+                        As a Security Ops user, you have complete control over your data and privacy settings.
+                    </p>
+                    
+                    <h3 style="color: #90EE90; margin: 20px 0 10px 0;">Your Rights:</h3>
+                    <ul>
+                        <li><strong>Data Access:</strong> All your data is stored locally and accessible to you</li>
+                        <li><strong>Data Portability:</strong> Export your settings and whitelist at any time</li>
+                        <li><strong>Data Deletion:</strong> Completely remove all data by uninstalling the extension</li>
+                        <li><strong>Feature Control:</strong> Enable or disable any feature according to your preferences</li>
+                        <li><strong>Transparency:</strong> Full visibility into what data is stored and how it's used</li>
+                        <li><strong>No Consent Required:</strong> No personal data collection means no consent forms</li>
+                    </ul>
+                    
+                    <div class="info-box">
+                        <div class="info-title">Data Portability</div>
+                        <p>You can export your Security Ops settings, whitelist, and configuration at any time through the extension's settings page or by accessing your browser's extension storage.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2 class="section-title">
+                    <span class="section-icon"></span>
+                    Compliance and Standards
+                </h2>
+                <div class="section-content">
+                    <p>
+                        Security Ops is designed to comply with major privacy regulations and standards worldwide.
+                    </p>
+                    
+                    <h3 style="color: #90EE90; margin: 20px 0 10px 0;">Regulatory Compliance:</h3>
+                    <ul>
+                        <li><strong>GDPR (EU):</strong> No personal data processing, no consent required</li>
+                        <li><strong>CCPA (California):</strong> No personal information collection or sale</li>
+                        <li><strong>PIPEDA (Canada):</strong> No personal information handling</li>
+                        <li><strong>Privacy Act (Australia):</strong> No personal information collection</li>
+                        <li><strong>LGPD (Brazil):</strong> No personal data processing</li>
+                    </ul>
+                    
+                    <div class="highlight-box">
+                        <div class="highlight-title">Compliance by Design</div>
+                        <p>By not collecting any personal data, Security Ops automatically complies with privacy regulations worldwide without requiring complex compliance procedures.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2 class="section-title">
+                    <span class="section-icon"></span>
+                    Changes to This Policy
+                </h2>
+                <div class="section-content">
+                    <p>
+                        We may update this privacy policy from time to time to reflect changes in our practices or 
+                        for other operational, legal, or regulatory reasons.
+                    </p>
+                    
+                    <h3 style="color: #90EE90; margin: 20px 0 10px 0;">Policy Updates:</h3>
+                    <ul>
+                        <li>Material changes will be clearly communicated to users</li>
+                        <li>Updated policy will be available on our website and in the extension</li>
+                        <li>Version history will be maintained for transparency</li>
+                        <li>Users will be notified of significant changes through the extension interface</li>
+                    </ul>
+                    
+                    <div class="warning-box">
+                        <div class="warning-title">Continued Use</div>
+                        <p>Continued use of Security Ops after policy updates constitutes acceptance of the new terms. However, since we don't collect personal data, policy changes typically have minimal impact on users.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-section">
+                <h2 class="contact-title">Contact Us</h2>
+                <p class="contact-text">
+                    If you have any questions about this privacy policy or Security Ops' privacy practices, 
+                    please contact us:
+                </p>
+                <a href="mailto:sac@securityops.co" class="contact-email">sac@securityops.co</a>
+                
+                <div style="margin-top: 20px; color: #ccc;">
+                    <p>Security Ops</p>
+                    <p>Advanced Privacy & Security Extension</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="index.html" class="footer-link">Home</a>
+                <a href="#" class="footer-link">Documentation</a>
+                <a href="#" class="footer-link">Support</a>
+                <a href="#" class="footer-link">GitHub</a>
+            </div>
+            <p>&copy; 2025 Security Ops. All rights reserved. | Your Privacy is Our Priority</p>
+        </div>
+    </footer>
+</body>
+</html>
+

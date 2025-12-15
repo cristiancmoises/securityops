@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Ops - Advanced Privacy & Security Extension</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: #000000; /* Full black background */
+            color: #ffffff;
+            line-height: 1.4;
+            width: 400px;
+            max-height: 600px;
+            overflow-y: auto;
+            padding: 0;
+        }
+        
+        .popup-container {
+            padding: 16px;
+        }
+        
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+        
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: url('sec.svg') no-repeat center;
+            background-size: contain;
+            border-radius: 6px;
+        }
+        
+        .logo-text {
+            font-size: 20px;
+            font-weight: bold;
+            color: #90EE90;
+        }
+        
+        .version {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 5px;
+        }
+        
+        .tagline {
+            font-size: 14px;
+            color: #ccc;
+            margin-bottom: 10px;
+        }
+        
+        /* Quick Stats */
+        .quick-stats {
+            background: rgba(144, 238, 144, 0.1);
+            border: 1px solid #90EE90;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin-top: 8px;
+        }
+        
+        .stat-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 8px;
+            border-radius: 4px;
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 16px;
+            font-weight: bold;
+            color: #90EE90;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 10px;
+            color: #ccc;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Features Section */
+        .features {
+            margin-bottom: 16px;
+        }
+        
+        .section-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #90EE90;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            padding: 10px;
+            text-align: center;
+            transition: all 0.2s;
+        }
+        
+        .feature-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: #90EE90;
+            transform: translateY(-1px);
+        }
+        
+        .feature-icon {
+            font-size: 20px;
+            margin-bottom: 4px;
+            display: block;
+        }
+        
+        .feature-title {
+            font-size: 12px;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+        
+        .feature-description {
+            font-size: 10px;
+            color: #ccc;
+            line-height: 1.3;
+        }
+        
+        /* Security Features */
+        .security-features {
+            margin-bottom: 16px;
+        }
+        
+        .security-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 6px;
+        }
+        
+        .security-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            padding: 8px 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .security-icon {
+            font-size: 14px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .security-text {
+            flex: 1;
+        }
+        
+        .security-title {
+            font-size: 11px;
+            font-weight: bold;
+            color: #90EE90;
+            margin-bottom: 2px;
+        }
+        
+        .security-desc {
+            font-size: 9px;
+            color: #ccc;
+            line-height: 1.2;
+        }
+        
+        /* Installation Steps */
+        .installation {
+            margin-bottom: 16px;
+        }
+        
+        .steps-list {
+            list-style: none;
+            counter-reset: step-counter;
+        }
+        
+        .step-item {
+            counter-increment: step-counter;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            padding: 8px 10px;
+            margin-bottom: 6px;
+            position: relative;
+            padding-left: 35px;
+        }
+        
+        .step-item::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 18px;
+            height: 18px;
+            background: #90EE90;
+            color: #000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: bold;
+        }
+        
+        .step-title {
+            font-size: 11px;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 2px;
+        }
+        
+        .step-desc {
+            font-size: 9px;
+            color: #ccc;
+            line-height: 1.2;
+        }
+        
+        /* Action Buttons */
+        .action-buttons {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+        
+        .btn {
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: bold;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+            display: block;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #90EE90 0%, #32CD32 100%);
+            color: #000;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #32CD32 0%, #90EE90 100%);
+            transform: translateY(-1px);
+        }
+        
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: #90EE90;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding-top: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 16px;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+        
+        .footer-link {
+            color: #90EE90;
+            text-decoration: none;
+            font-size: 10px;
+            transition: color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        
+        .footer-link:hover {
+            color: #fff;
+        }
+        
+        .footer-icon {
+            font-size: 12px;
+            width: 14px;
+            height: 14px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .settings-icon {
+            background: #90EE90;
+            color: #000;
+            border-radius: 3px;
+            font-size: 10px;
+            font-weight: bold;
+        }
+        
+        .copyright {
+            font-size: 9px;
+            color: #888;
+        }
+        
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #000000;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #444;
+            border-radius: 3px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        
+        /* Responsive adjustments for very small screens */
+        @media (max-width: 350px) {
+            body {
+                width: 320px;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="popup-container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo">
+                <div class="logo-icon"></div>
+                <div class="logo-text">Security Ops</div>
+            </div>
+            <div class="version">v3.3.8</div>
+            <div class="tagline">Advanced Privacy & Security Extension</div>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="quick-stats">
+            <div style="font-size: 12px; font-weight: bold; color: #90EE90; margin-bottom: 4px;">Protection Statistics</div>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">100K+</span>
+                    <span class="stat-label">Blocked Domains</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">99.9%</span>
+                    <span class="stat-label">Ad Blocking</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">98.5%</span>
+                    <span class="stat-label">Tracker Blocking</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">&lt;1ms</span>
+                    <span class="stat-label">Response Time</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Core Features -->
+        <div class="features">
+            <div class="section-title">Core Features</div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <div class="feature-title">Ad Blocking</div>
+                    <div class="feature-description">Block ads, banners, and promotional content</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <div class="feature-title">Tracker Prevention</div>
+                    <div class="feature-description">Prevent tracking scripts and analytics</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🦠</div>
+                    <div class="feature-title">Malware Protection</div>
+                    <div class="feature-description">Block malicious websites and phishing</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌙</div>
+                    <div class="feature-title">Dark Theme</div>
+                    <div class="feature-description">Apply dark mode to all websites</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔐</div>
+                    <div class="feature-title">Proxy Support</div>
+                    <div class="feature-description">Tor proxy and custom proxy support</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📜</div>
+                    <div class="feature-title">LibreJS</div>
+                    <div class="feature-description">Block unlicensed JavaScript code</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Security Features -->
+        <div class="security-features">
+            <div class="section-title">Security Features</div>
+            <div class="security-grid">
+                <div class="security-item">
+                    <div class="security-icon">🔐</div>
+                    <div class="security-text">
+                        <div class="security-title">HTTPS Enforcement</div>
+                        <div class="security-desc">Automatic HTTP to HTTPS redirects for secure connections</div>
+                    </div>
+                </div>
+                <div class="security-item">
+                    <div class="security-icon">🛡️</div>
+                    <div class="security-text">
+                        <div class="security-title">DNS Protection</div>
+                        <div class="security-desc">Mullvad VPN DNS blocklists for enhanced security</div>
+                    </div>
+                </div>
+                <div class="security-item">
+                    <div class="security-icon">📊</div>
+                    <div class="security-text">
+                        <div class="security-title">Real-time Statistics</div>
+                        <div class="security-desc">Monitor blocking performance with live statistics</div>
+                    </div>
+                </div>
+                <div class="security-item">
+                    <div class="security-icon">🎯</div>
+                    <div class="security-text">
+                        <div class="security-title">Category Blocking</div>
+                        <div class="security-desc">Block content by categories: gambling, adult, social media</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Installation Steps -->
+        <div class="installation">
+            <div class="section-title">Quick Installation</div>
+            <ol class="steps-list">
+                <li class="step-item">
+                    <div class="step-title">Download Extension</div>
+                    <div class="step-desc">Download the Security Ops extension package for your browser</div>
+                </li>
+                <li class="step-item">
+                    <div class="step-title">Install Extension</div>
+                    <div class="step-desc">Extract ZIP and load unpacked extension in developer mode</div>
+                </li>
+                <li class="step-item">
+                    <div class="step-title">Configure Settings</div>
+                    <div class="step-desc">Customize protection settings and configure proxy options</div>
+                </li>
+                <li class="step-item">
+                    <div class="step-title">Enjoy Protection</div>
+                    <div class="step-desc">Start browsing with comprehensive security protection</div>
+                </li>
+            </ol>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <a href="stable-popup.html" class="btn btn-primary">Open Extension Popup</a>
+            <a href="stable-options.html" class="btn btn-secondary">Open Settings</a>
+            <a href="privacy-policy.html" class="btn btn-secondary">Privacy Policy</a>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-links">
+                <a href="stable-popup.html" class="footer-link">
+                    <span class="footer-icon">🔧</span>
+                    <span>Popup</span>
+                </a>
+                <a href="stable-options.html" class="footer-link">
+                    <span class="footer-icon settings-icon">⚙</span>
+                    <span>Settings</span>
+                </a>
+                <a href="privacy-policy.html" class="footer-link">
+                    <span class="footer-icon">🔒</span>
+                    <span>Privacy</span>
+                </a>
+                <a href="mailto:sac@securityops.co" class="footer-link">
+                    <span class="footer-icon">📧</span>
+                    <span>Support</span>
+                </a>
+            </div>
+            <div class="copyright">© 2025 Security Ops. Advanced Privacy & Security Extension</div>
+        </div>
+    </div>
+</body>
+</html>
+

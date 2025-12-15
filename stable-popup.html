@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Ops</title>
+    <link rel="stylesheet" href="dark-theme.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-black text-green-300 p-4">
+    <div class="max-w-md mx-auto">
+        <div class="text-center mb-4">
+            <img src="sec.svg" alt="Security Ops Logo" class="mx-auto h-16">
+            <span class="text-sm">v3.3.8</span>
+        </div>
+        <h1 class="text-2xl font-semibold text-center mb-4">Security Ops</h1>
+        
+        <!-- IP Address Section -->
+        <div class="card mb-4" id="ip-section" style="display: none;">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h3 class="text-sm font-medium text-gray-400 mb-1">Your IP Address</h3>
+                    <span id="user-ip" class="text-lg font-mono">Loading...</span>
+                </div>
+                <button id="toggle-ip-btn" class="text-xs bg-gray-700 hover:bg-gray-600 px-3 py-1 rounded">Hide</button>
+            </div>
+        </div>
+        
+        <div class="card">
+            <button id="panic-button" class="bg-red-600 hover:bg-red-500 text-white w-full py-2 rounded mb-4">Panic Button (Ctrl + Alt + P)</button>
+        </div>
+        
+        <div class="tab-buttons">
+            <button class="tab-button active" data-tab="dashboard">Dashboard</button>
+            <button class="tab-button" data-tab="settings">Settings</button>
+            <button class="tab-button" data-tab="logs">Logs</button>
+        </div>
+
+        <div id="dashboard" class="tab-content active">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-lg">Blocking Statistics</h2>
+                <button id="show-ip-btn" class="text-xs bg-gray-700 hover:bg-gray-600 px-3 py-1 rounded">Show IP</button>
+            </div>
+            
+            <!-- Total Blocked - Prominent Display -->
+            <div class="card mb-4 bg-gradient-to-r from-green-900 to-green-800">
+                <div class="text-center">
+                    <div class="text-3xl font-bold mb-1" id="blocked-count">0</div>
+                    <div class="text-sm text-green-200">Total Requests Blocked</div>
+                </div>
+            </div>
+            
+            <!-- Category Statistics - Improved Grid -->
+            <div class="stats-grid-improved mb-4">
+                <div class="stat-card">
+                    <div class="stat-icon">🚫</div>
+                    <div class="stat-number" id="ads-blocked">0</div>
+                    <div class="stat-label">Ads</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">👁️</div>
+                    <div class="stat-number" id="trackers-blocked">0</div>
+                    <div class="stat-label">Trackers</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🦠</div>
+                    <div class="stat-number" id="malware-blocked">0</div>
+                    <div class="stat-label">Malware</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🎰</div>
+                    <div class="stat-number" id="gambling-blocked">0</div>
+                    <div class="stat-label">Gambling</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🔞</div>
+                    <div class="stat-number" id="adult-blocked">0</div>
+                    <div class="stat-label">Adult</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📱</div>
+                    <div class="stat-number" id="social-blocked">0</div>
+                    <div class="stat-label">Social</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📜</div>
+                    <div class="stat-number" id="scripts-blocked">0</div>
+                    <div class="stat-label">Scripts</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🎵</div>
+                    <div class="stat-number" id="media-blocked">0</div>
+                    <div class="stat-label">Media</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">💪</div>
+                    <div class="stat-number" id="gigachad-blocked">0</div>
+                    <div class="stat-label">Gigachad</div>
+                </div>
+            </div>
+            
+            <div class="flex gap-2">
+                <button id="clear-stats-btn" class="bg-gray-700 hover:bg-gray-600 flex-1 py-2 rounded text-sm">Clear Stats</button>
+                <button id="update-filters-btn" class="bg-gray-700 hover:bg-gray-600 flex-1 py-2 rounded text-sm">Update Filters</button>
+            </div>
+        </div>
+
+        <div id="settings" class="tab-content">
+            <h2 class="text-lg mb-4">Quick Controls</h2>
+            <div class="control-group">
+                <label class="flex items-center gap-2">
+                    <input type="checkbox" id="block-ads-toggle"> Block Ads
+                </label>
+                <label class="flex items-center gap-2">
+                    <input type="checkbox" id="block-trackers-toggle"> Block Trackers
+                </label>
+                <label class="flex items-center gap-2">
+                    <input type="checkbox" id="block-malware-toggle"> Block Malware
+                </label>
+                <label class="flex items-center gap-2">
+                    <input type="checkbox" id="block-gambling-toggle"> Block Gambling
+                </label>
+                <label class="flex items-center gap-2">
+                    <input type="checkbox" id="block-adult-toggle"> Block Adult Content
+                </label>
+                <label class="flex items-center gap-2">
+                    <input type="checkbox" id="block-social-toggle"> Block Social Media
+                </label>
+                <label class="flex items-center gap-2">
+                    <input type="checkbox" id="block-bad-js-toggle"> Block Bad JavaScript
+                </label>
+                <label class="flex items-center gap-2">
+                    <input type="checkbox" id="block-media-toggle"> Block Media
+                </label>
+                <label class="flex items-center gap-2">
+                    <input type="checkbox" id="block-gigachad-toggle"> Gigachad AdBlock
+                </label>
+                <label class="flex items-center gap-2">
+                    <input type="checkbox" id="strip-tracking-params-toggle"> Strip Tracking Params
+                </label>
+                <label class="flex items-center gap-2">
+                    <input type="checkbox" id="enforce-https-toggle"> Enforce HTTPS
+                </label>
+                <label class="flex items-center gap-2">
+                    <input type="checkbox" id="black-theme-toggle"> Dark Theme
+                </label>
+                <label class="flex items-center gap-2">
+                    Font Color
+                    <select id="font-color-select" class="w-full">
+                        <option value="soft-green">Soft Green</option>
+                        <option value="soft-blue">Soft Blue</option>
+                        <option value="soft-yellow">Soft Yellow</option>
+                        <option value="white">White</option>
+                        <option value="soft-purple">Soft Purple</option>
+                        <option value="soft-violet">Soft Violet</option>
+                    </select>
+                </label>
+                <label class="flex items-center gap-2">
+                    <input type="checkbox" id="redirect-google-toggle"> Redirect Google to Security Search
+                </label>
+                <label class="flex items-center gap-2">
+                    <input type="checkbox" id="redirect-youtube-toggle"> Redirect YouTube to Invidious
+                </label>
+                <label class="flex items-center gap-2">
+                    <input type="checkbox" id="redirect-reddit-toggle"> Redirect Reddit to Redlib
+                </label>
+                <label class="flex items-center gap-2">
+                    <input type="checkbox" id="proxy-toggle"> Proxy
+                </label>
+                <div id="proxy-status">Disconnected</div>
+                <button id="disconnect-proxy-btn" class="hidden bg-gray-700 hover:bg-gray-600 w-full py-2 rounded">Disconnect Proxy</button>
+                <button id="torando-btn" class="bg-gray-700 hover:bg-gray-600 w-full py-2 rounded">TORANDO</button>
+                <div id="torando-status">Status: INACTIVE</div>
+                <div class="flex gap-2">
+                    <input type="text" id="whitelist-input" placeholder="Enter domain (e.g., example.com)" class="w-full">
+                    <button id="add-whitelist-btn" class="bg-gray-700 hover:bg-gray-600 py-2 px-4 rounded">Add to Whitelist</button>
+                </div>
+                <ul id="whitelist-list" class="list-disc pl-6"></ul>
+                <button id="open-settings-btn" class="bg-gray-700 hover:bg-gray-600 w-full py-2 rounded">Open Full Settings</button>
+            </div>
+        </div>
+
+        <div id="logs" class="tab-content">
+            <h2 class="text-lg mb-4">Blocked Content Logs</h2>
+            <div class="log-container">
+                <div class="log-header">
+                    <div class="log-header-item">Time</div>
+                    <div class="log-header-item">URL</div>
+                    <div class="log-header-item">Reason</div>
+                </div>
+                <div class="log-body" id="log-entries">
+                    <!-- Log entries will be populated here -->
+                </div>
+            </div>
+            <div class="flex gap-2 mt-4">
+                <button id="download-logs-btn" class="bg-gray-700 hover:bg-gray-600 flex-1 py-2 rounded text-sm">Download Logs</button>
+                <button id="clear-logs-btn" class="bg-gray-700 hover:bg-gray-600 flex-1 py-2 rounded text-sm">Clear Logs</button>
+            </div>
+        </div>
+
+        <div id="status-message" class="status-message mt-4" style="display: none;"></div>
+
+<footer>
+  <a href="index.html" >Home</a>
+  <a href="https://extension.securityops.co/privacy-policy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+  <a href="https://wiki.securityops.co" target="_blank" rel="noopener noreferrer">SecurityOps</a>
+  <a href="https://cristiancezarmoises.com" target="_blank" rel="noopener noreferrer">Developer</a>
+</footer>
+
+    </div>
+    <script src="stable-popup.js"></script>
+</body>
+</html>
+

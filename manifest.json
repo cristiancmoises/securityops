@@ -1,0 +1,65 @@
+{
+"manifest_version": 3,
+"name": "Security Ops",
+"version": "3.3.10",
+"description": "A privacy-focused browser extension with ad-blocking, tracker-blocking, and dark theme features.",
+"permissions": [
+"storage",
+"declarativeNetRequest",
+"declarativeNetRequestFeedback",
+"proxy",
+"tabs",
+"activeTab",
+"webRequest",
+"omnibox",
+"browsingData",
+"webNavigation"
+],
+"host_permissions": [
+"<all_urls>",
+"https://raw.githubusercontent.com/",
+"https://securityops.co/",
+"https://*.securityops.co/",
+"https://inv.nadeko.net/",
+"https://cristiancezarmoises.com/",
+"https://redlib.catsarch.com/",
+"https://ipapi.co/*"
+],
+"background": {
+"service_worker": "stable-background.js"
+},
+"content_scripts": [
+{
+"matches": ["<all_urls>"],
+"js": ["stable-content.js"],
+"css": ["dark-theme.css"],
+"run_at": "document_start"
+}
+],
+"action": {
+"default_popup": "stable-popup.html",
+"default_icon": {
+"16": "icons/icon16.png",
+"48": "icons/icon48.png",
+"128": "icons/icon128.png"
+}
+},
+"icons": {
+"16": "icons/icon16.png",
+"48": "icons/icon48.png",
+"128": "icons/icon128.png"
+},
+"declarative_net_request": {
+"rule_resources": [
+{
+"id": "ruleset_1",
+"enabled": true,
+"path": "rules.json"
+}
+]
+},
+"options_ui": {
+"page": "stable-options.html",
+"open_in_tab": true
+}
+}
