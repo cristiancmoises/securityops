@@ -1,5 +1,12 @@
+<a href="https://chromewebstore.google.com/detail/security-ops/adnfpbiemlmnkahlgmbdgbajkadekgfh"
+   target="_blank"
+   rel="noopener noreferrer">
+  <img width="567"
+       height="171"
+       alt="chrome-store"
+       src="https://github.com/user-attachments/assets/e4a02299-295b-466c-be83-6c21f79159d9" />
+</a>
 
-# Security Ops - Extension
 <img width="1280" height="800" alt="Privacy first (1)" src="https://github.com/user-attachments/assets/61e2d7e8-5126-461b-89bc-d70524793bdb" />
 
 # . About
