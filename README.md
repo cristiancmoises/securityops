@@ -15,6 +15,11 @@ The **Security Ops** extension for **Chrome**, **Firefox**, and **Edge** is your
 
 With features like ad and malware blocking, fingerprint protection, privacy redirects, and more; all wrapped in a sleek, fully customizable package. **Security Ops** ensures your online experience is fast, secure, and private.
 
+# . Project
+
+I created this extension primarily for my own use, making it easier to organize and share all of my project links in one place.
+By default, all websites under securityops.co are whitelisted, as well as my personal portfolio cristancezarmoises.com and Redlib instance redlib.catsarch.com and invidious instance: inv.nadeko.net
+
 # . 🛡️ **Key Features:**
 
 - **Ad, Tracker, and Malware Blocking:** Blocks requests to domains listed in a regularly updated hosts file sourced from Codeberg.
