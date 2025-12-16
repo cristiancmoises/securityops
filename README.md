@@ -9,7 +9,7 @@
 
 <img width="1280" height="800" alt="Privacy first (1)" src="https://github.com/user-attachments/assets/61e2d7e8-5126-461b-89bc-d70524793bdb" />
 
-# PROJECT MOVED TO MY OWN FORGEJO INSTANCE!!! [CHECK HERE](https://git.securityops.co)
+# PROJECT MOVED TO MY OWN FORGEJO INSTANCE!!! [CHECK HERE](https://git.securityops.co/securityops/securityops)
 
 # . About
 
