@@ -136,7 +136,7 @@
     "priority": 2,
     "action": {
       "type": "redirect",
-      "redirect": { "transform": { "host": "inv.nadeko.net", "scheme": "https" } }
+      "redirect": { "transform": { "host": "invidious.nerdvpn.de", "scheme": "https" } }
     },
     "condition": {
       "regexFilter": "^https?://(www\\.)?youtube\\.com/watch.*",

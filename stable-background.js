@@ -49,7 +49,7 @@ let extensionState = {
         gigachad: 0
     },
     blockLogs: [],
-    whitelist: ['securityops.co', '*.securityops.co','redlib.catsarch.com', 'inv.nadeko.net', 'cristiancezarmoises.com'],
+    whitelist: ['securityops.co', '*.securityops.co','redlib.catsarch.com', 'invidious.nerdvpn.de', 'cristiancezarmoises.com'],
     userIP: null,
     ipLastFetched: null
 };
@@ -140,7 +140,7 @@ async function loadSettings() {
         ]);
         currentSettings = { ...currentSettings, ...result };
         extensionState.proxySettings = { ...extensionState.proxySettings, ...result.proxySettings };
-        extensionState.whitelist = result.whitelist || ['securityops.co', '*.securityops.co' , 'redlib.catsarch.com', 'inv.nadeko.net', 'cristiancezarmoises.com'];
+        extensionState.whitelist = result.whitelist || ['securityops.co', '*.securityops.co' , 'redlib.catsarch.com', 'invidious.nerdvpn.de', 'cristiancezarmoises.com'];
         await browser.storage.local.set({ 'librejs.enabled': currentSettings.blockBadJS || false });
         console.log('Security Ops: Settings loaded successfully:', currentSettings);
         setupDeclarativeNetRequestRules();
@@ -152,7 +152,7 @@ async function loadSettings() {
 async function fetchBlocklists() {
     try {
         const safeDomains = [
-            'securityops.co', '*.securityops.co' , 'redlib.catsarch.com', 'inv.nadeko.net', 'cristiancezarmoises.com'
+            'securityops.co', '*.securityops.co' , 'redlib.catsarch.com', 'invidious.nerdvpn.de', 'cristiancezarmoises.com'
         ];
         const mullvadResponse = await fetch('https://raw.githubusercontent.com/mullvad/dns-blocklists/main/output/dnsblocklist.txt');
         const mullvadText = await mullvadResponse.text();
@@ -354,7 +354,7 @@ function setupMessageListeners() {
                 sendResponse({ success: true });
                 return true;
             case 'updateWhitelist':
-                extensionState.whitelist = [...new Set([...(message.whitelist || []), 'securityops.co', '*.securityops.co' , 'redlib.catsarch.com', 'inv.nadeko.net', 'cristiancezarmoises.com'])];
+                extensionState.whitelist = [...new Set([...(message.whitelist || []), 'securityops.co', '*.securityops.co' , 'redlib.catsarch.com', 'invidious.nerdvpn.de', 'cristiancezarmoises.com'])];
                 browser.storage.sync.set({ whitelist: extensionState.whitelist });
                 setupDeclarativeNetRequestRules();
                 if (extensionState.proxySettings.enabled) {
@@ -541,7 +541,7 @@ async function setupDeclarativeNetRequestRules() {
                 priority: 2,
                 action: {
                     type: 'redirect',
-                    redirect: { transform: { host: 'inv.nadeko.net', scheme: 'https' } }
+                    redirect: { transform: { host: 'invidious.nerdvpn.de', scheme: 'https' } }
                 },
                 condition: {
                     regexFilter: '^https?://(www\\.)?youtube\\.com/watch.*',
@@ -630,7 +630,7 @@ browser.storage.onChanged.addListener((changes, namespace) => {
             } else if (key === 'proxySettings') {
                 extensionState.proxySettings = { ...extensionState.proxySettings, ...changes[key].newValue };
             } else if (key === 'whitelist') {
-                extensionState.whitelist = [...new Set([...(changes[key].newValue || []), 'securityops.co', '*.securityops.co', 'redlib.catsarch.com', 'inv.nadeko.net', 'cristiancezarmoises.com'])];
+                extensionState.whitelist = [...new Set([...(changes[key].newValue || []), 'securityops.co', '*.securityops.co', 'redlib.catsarch.com', 'invidious.nerdvpn.de', 'cristiancezarmoises.com'])];
                 setupDeclarativeNetRequestRules();
             }
         });

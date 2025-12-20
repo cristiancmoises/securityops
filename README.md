@@ -9,8 +9,6 @@
 
 <img width="1280" height="800" alt="Privacy first (1)" src="https://github.com/user-attachments/assets/61e2d7e8-5126-461b-89bc-d70524793bdb" />
 
-# PROJECT MOVED TO MY OWN FORGEJO INSTANCE!!! [CHECK HERE](https://git.securityops.co/securityops/securityops)
-
 # . About
 
 The **Security Ops** extension for **Chrome**, **Firefox**, and **Edge** is your all-in-one shield for online privacy, security, and performance. It delivers a suite of powerful features designed to protect your browsing experience while enhancing speed and security.
@@ -20,7 +18,13 @@ With features like ad and malware blocking, fingerprint protection, privacy redi
 # . Project
 
 I created this extension primarily for my own use, making it easier to organize and share all of my project links in one place.
-By default, all websites under securityops.co are whitelisted, as well as my personal portfolio cristancezarmoises.com and Redlib instance redlib.catsarch.com and invidious instance: inv.nadeko.net
+By default, all websites under securityops.co are whitelisted, as well as my personal portfolio cristancezarmoises.com and Redlib instance redlib.catsarch.com and invidious instance: invidious.nerdvpn.de
+
+# . Why i do this?
+
+Because i love cybersecurity and i want help others. 
+
+“Whatever you do, work at it with all your heart, as working for the Lord, not for human masters.” (Colossians 3:23)
 
 # . 🛡️ **Key Features:**
 
@@ -77,7 +81,7 @@ Thank you for using **Security Ops**!
 Your privacy and security matter to us. Stay safe and browse with confidence! 
 
 ---
-## Dev
+## Developer
 ![Powered by caffeine and vitamins](https://github.com/user-attachments/assets/d5eab04e-cf88-4035-a037-fec2e40b94b2)
 
 Dreamer passionate about cybersecurity, eager to explore and grow. 
