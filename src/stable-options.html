@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<!--
+  Security Ops — Privacy-focused browser extension
+  Copyright (C) 2024-2026 Cristian Cezar Moises <ethicalhacker@riseup.net>
+
+  This program is free software: you can redistribute it and/or modify it
+  under the terms of the GNU General Public License as published by the
+  Free Software Foundation, either version 3 of the License, or (at your
+  option) any later version.
+
+  SPDX-License-Identifier: GPL-3.0-or-later
+-->
+
+<html lang="en" class="accent-cyan">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Security Ops — Settings</title>
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/options.css">
+</head>
+<body>
+  <main class="opt-page">
+    <header class="opt-header">
+      <img class="opt-logo" src="sec.svg" alt="Security Ops" width="56" height="56">
+      <div class="opt-header-text">
+        <h1>Security Ops</h1>
+        <p><span id="opt-version">—</span> · Privacy-first browser hardening</p>
+      </div>
+    </header>
+
+    <section class="opt-section">
+      <h2><span data-icon="filter"></span>Blocking</h2>
+      <p class="section-help">Choose what categories of requests to block. Disabling a category removes all its rules immediately.</p>
+      <div class="opt-grid">
+        <label class="switch">
+          <span class="switch-label"><span data-icon="filter"></span>Block Ads
+            <span class="switch-help">Display, video, native ad networks</span></span>
+          <input class="switch-input" type="checkbox" data-setting="blockAds">
+        </label>
+        <label class="switch">
+          <span class="switch-label"><span data-icon="eye"></span>Block Trackers
+            <span class="switch-help">Analytics, fingerprinting, pixels</span></span>
+          <input class="switch-input" type="checkbox" data-setting="blockTrackers">
+        </label>
+        <label class="switch">
+          <span class="switch-label"><span data-icon="bug"></span>Block Malware
+            <span class="switch-help">Known phishing &amp; malware hosts</span></span>
+          <input class="switch-input" type="checkbox" data-setting="blockMalware">
+        </label>
+        <label class="switch">
+          <span class="switch-label"><span data-icon="dice"></span>Block Gambling
+            <span class="switch-help">Casino, poker, sports betting</span></span>
+          <input class="switch-input" type="checkbox" data-setting="blockGambling">
+        </label>
+        <label class="switch">
+          <span class="switch-label"><span data-icon="lock"></span>Block Adult Content
+            <span class="switch-help">NSFW domains</span></span>
+          <input class="switch-input" type="checkbox" data-setting="blockAdult">
+        </label>
+        <label class="switch">
+          <span class="switch-label"><span data-icon="users"></span>Block Social Media
+            <span class="switch-help">Major social networks</span></span>
+          <input class="switch-input" type="checkbox" data-setting="blockSocial">
+        </label>
+        <label class="switch">
+          <span class="switch-label"><span data-icon="code"></span>Block Bad JavaScript
+            <span class="switch-help">Aggressive: blocks all scripts</span></span>
+          <input class="switch-input" type="checkbox" data-setting="blockBadJS">
+        </label>
+        <label class="switch">
+          <span class="switch-label"><span data-icon="film"></span>Block Media
+            <span class="switch-help">Aggressive: blocks images/audio/video</span></span>
+          <input class="switch-input" type="checkbox" data-setting="blockMedia">
+        </label>
+        <label class="switch">
+          <span class="switch-label"><span data-icon="zap"></span>Gigachad AdBlock
+            <span class="switch-help">Extra-aggressive community list</span></span>
+          <input class="switch-input" type="checkbox" data-setting="blockGigachad">
+        </label>
+      </div>
+    </section>
+
+    <section class="opt-section">
+      <h2><span data-icon="lock"></span>Privacy</h2>
+      <p class="section-help">Enforce HTTPS, strip tracking parameters from URLs.</p>
+      <label class="switch">
+        <span class="switch-label"><span data-icon="filter"></span>Strip Tracking Parameters
+          <span class="switch-help">utm_*, fbclid, gclid, msclkid, etc.</span></span>
+        <input class="switch-input" type="checkbox" data-setting="stripTrackingParams">
+      </label>
+      <label class="switch">
+        <span class="switch-label"><span data-icon="https"></span>Enforce HTTPS
+          <span class="switch-help">Upgrade http:// to https:// when possible</span></span>
+        <input class="switch-input" type="checkbox" data-setting="enforceHttps">
+      </label>
+      <label class="switch">
+        <span class="switch-label"><span data-icon="globe"></span>Enable IP Lookup
+          <span class="switch-help">Off by default — when on, queries api.ipify.org</span></span>
+        <input class="switch-input" type="checkbox" data-setting="ipLookupEnabled">
+      </label>
+    </section>
+
+    <section class="opt-section">
+      <h2><span data-icon="redirect"></span>Redirects</h2>
+      <p class="section-help">Replace surveillance-heavy services with privacy-respecting frontends. Each toggle is fully reversible.</p>
+      <label class="switch">
+        <span class="switch-label"><span data-icon="search"></span>Google → SecurityOps Search
+          <span class="switch-help">All google.* search queries → securityops.co/web?s=…</span></span>
+        <input class="switch-input" type="checkbox" data-setting="redirectGoogle">
+      </label>
+      <label class="switch">
+        <span class="switch-label"><span data-icon="search"></span>Bing → SecurityOps Search
+          <span class="switch-help">All bing.com search queries → securityops.co/web?s=…</span></span>
+        <input class="switch-input" type="checkbox" data-setting="redirectBing">
+      </label>
+      <label class="switch">
+        <span class="switch-label"><span data-icon="play"></span>YouTube → Invidious
+          <span class="switch-help">youtube.com/watch?v=… → invidious.nerdvpn.de/watch?v=…</span></span>
+        <input class="switch-input" type="checkbox" data-setting="redirectYouTube">
+      </label>
+      <label class="switch">
+        <span class="switch-label"><span data-icon="message"></span>Reddit → Redlib
+          <span class="switch-help">reddit.com/r/* → redlib.catsarch.com/r/*</span></span>
+        <input class="switch-input" type="checkbox" data-setting="redirectReddit">
+      </label>
+    </section>
+
+    <section class="opt-section">
+      <h2><span data-icon="paint"></span>Appearance</h2>
+      <p class="section-help">Apply the dark theme to websites. YouTube uses its native dark mode for compatibility.</p>
+      <label class="switch">
+        <span class="switch-label"><span data-icon="moon"></span>Dark Theme on Sites
+          <span class="switch-help">Disable if you prefer site native themes</span></span>
+        <input class="switch-input" type="checkbox" data-setting="blackThemeEnabled">
+      </label>
+        <label class="switch"><span class="switch-label"><span class="ic" data-icon="youtube"></span>YT Distraction-Free</span><input class="switch-input" type="checkbox" data-setting="youtubeFocusMode"></label>
+      <div class="field-row">
+        <label for="opt-fontColor"><span data-icon="paint"></span>Accent Color</label>
+        <select id="opt-fontColor" class="select" data-setting="fontColor">
+          <option value="cyan">Cyan</option>
+          <option value="teal">Teal</option>
+          <option value="blue">Blue</option>
+          <option value="purple">Purple</option>
+          <option value="green">Green</option>
+          <option value="amber">Amber</option>
+          <option value="soft-green">Soft Green</option>
+          <option value="soft-blue">Soft Blue</option>
+          <option value="soft-yellow">Soft Yellow</option>
+          <option value="soft-purple">Soft Purple</option>
+          <option value="soft-violet">Soft Violet</option>
+          <option value="white">White</option>
+        </select>
+      </div>
+    </section>
+
+    <section class="opt-section">
+      <h2><span data-icon="check"></span>Whitelist</h2>
+      <p class="section-help">Domains added here are exempt from all blocking and redirects.</p>
+      <div class="btn-row">
+        <input type="text" class="input" id="whitelist-input" placeholder="example.com" style="flex:1; min-width: 220px;">
+        <button class="btn btn--primary" id="btn-add-whitelist" type="button">Add Domain</button>
+      </div>
+      <ul class="whitelist-list" id="whitelist-list"></ul>
+    </section>
+
+    <section class="opt-section">
+      <h2><span data-icon="database"></span>Data</h2>
+      <p class="section-help">Manage stats, logs, and blocklist data.</p>
+      <div class="btn-row">
+        <button class="btn" id="btn-clear-stats" type="button"><span data-icon="broom"></span>Clear Statistics</button>
+        <button class="btn" id="btn-clear-logs" type="button"><span data-icon="broom"></span>Clear Logs</button>
+        <button class="btn" id="btn-update-filters" type="button"><span data-icon="refresh"></span>Refresh Blocklists</button>
+        <button class="btn btn--danger" id="btn-panic" type="button"><span data-icon="alert"></span>Panic — Clear &amp; Close All</button>
+      </div>
+    </section>
+
+    <footer class="opt-footer">
+      <a href="index.html" target="_blank">Home</a>
+      <a href="https://extension.securityops.co/privacy-policy.html" target="_blank">Privacy Policy</a>
+      <a href="https://wiki.securityops.co" target="_blank">SecurityOps Wiki</a>
+      <a href="https://linkedin.com/in/cristiancezarmoises/" target="_blank">Developer</a>
+    </footer>
+  </main>
+
+  <div class="status-banner" id="status-banner" role="status"></div>
+  <script src="css/icons.js"></script>
+  <script src="stable-options.js"></script>
+</body>
+</html>

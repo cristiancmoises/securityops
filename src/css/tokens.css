@@ -1,0 +1,60 @@
+/*
+ * Security Ops — Privacy-focused browser extension
+ * Copyright (C) 2024-2026 Cristian Cezar Moises <ethicalhacker@riseup.net>
+ *
+ * This program is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the
+ * Free Software Foundation, either version 3 of the License, or (at your
+ * option) any later version.
+ *
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ */
+
+/* css/tokens.css — Security Ops v10.1.0 — dark tokens + 12 accent palettes (popup/options only) */
+:root {
+  --surface-0: #06090d;
+  --surface-1: #0a1015;
+  --surface-2: #0f1820;
+  --surface-3: #16222e;
+  --surface-4: #1f2e3d;
+  --border-1:  #1a2632;
+  --border-2:  #2a3a4d;
+  --border-3:  #3a5068;
+  --accent:        #4dd0e1;
+  --accent-soft:   #7adee9;
+  --accent-strong: #00bcd4;
+  --accent-dim:    rgba(77, 208, 225, 0.35);
+  --accent-glow:   rgba(77, 208, 225, 0.12);
+  --text-1: #d6eef3;
+  --text-2: #8aa5b3;
+  --text-3: #5a7383;
+  --danger:  #ef4444;
+  --warning: #f59e0b;
+  --info:    #38bdf8;
+  --success: #10b981;
+  --t-fast: 120ms cubic-bezier(.2,.8,.2,1);
+  --t-base: 200ms cubic-bezier(.2,.8,.2,1);
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --shadow-1: 0 1px 2px rgba(0,0,0,.4);
+  --shadow-2: 0 4px 16px rgba(0,0,0,.5);
+  --font-stack: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono:  ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+}
+html.accent-cyan { --accent: #4dd0e1; --accent-soft: #7adee9; --accent-strong: #00bcd4; --accent-dim: rgba(77,208,225,0.35); --accent-glow: rgba(77,208,225,0.12); }
+html.accent-teal { --accent: #2dd4bf; --accent-soft: #5eead4; --accent-strong: #14b8a6; --accent-dim: rgba(45,212,191,0.35); --accent-glow: rgba(45,212,191,0.12); }
+html.accent-blue { --accent: #60a5fa; --accent-soft: #93c5fd; --accent-strong: #3b82f6; --accent-dim: rgba(96,165,250,0.35); --accent-glow: rgba(96,165,250,0.12); }
+html.accent-purple { --accent: #c084fc; --accent-soft: #d8b4fe; --accent-strong: #a855f7; --accent-dim: rgba(192,132,252,0.35); --accent-glow: rgba(192,132,252,0.12); }
+html.accent-green { --accent: #6ee7b7; --accent-soft: #a7f3d0; --accent-strong: #10b981; --accent-dim: rgba(110,231,183,0.35); --accent-glow: rgba(110,231,183,0.12); }
+html.accent-amber { --accent: #fcd34d; --accent-soft: #fde68a; --accent-strong: #f59e0b; --accent-dim: rgba(252,211,77,0.35); --accent-glow: rgba(252,211,77,0.12); }
+html.accent-soft-green  { --accent: #90EE90; --accent-soft: #b4f5b4; --accent-strong: #66cc66; --accent-dim: rgba(144,238,144,0.35); --accent-glow: rgba(144,238,144,0.12); }
+html.accent-soft-blue   { --accent: #87CEEB; --accent-soft: #aadcf2; --accent-strong: #5badd6; --accent-dim: rgba(135,206,235,0.35); --accent-glow: rgba(135,206,235,0.12); }
+html.accent-soft-yellow { --accent: #F0E68C; --accent-soft: #f6efb0; --accent-strong: #d6c95e; --accent-dim: rgba(240,230,140,0.35); --accent-glow: rgba(240,230,140,0.12); }
+html.accent-soft-purple { --accent: #DDA0DD; --accent-soft: #e9bce9; --accent-strong: #c478c4; --accent-dim: rgba(221,160,221,0.35); --accent-glow: rgba(221,160,221,0.12); }
+html.accent-soft-violet { --accent: #EE82EE; --accent-soft: #f3a7f3; --accent-strong: #d65cd6; --accent-dim: rgba(238,130,238,0.35); --accent-glow: rgba(238,130,238,0.12); }
+html.accent-white       { --accent: #FFFFFF; --accent-soft: #ffffff; --accent-strong: #d6dde2; --accent-dim: rgba(255,255,255,0.35); --accent-glow: rgba(255,255,255,0.10); }
+/* v10 */
+:root { --ring: 0 0 0 2px var(--surface-0), 0 0 0 4px var(--accent-dim); }
+.ic { display: inline-block; width: 16px; height: 16px; vertical-align: -3px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
+.ic-lg { width: 18px; height: 18px; }

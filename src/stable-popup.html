@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<!--
+  Security Ops — Privacy-focused browser extension
+  Copyright (c) 2024-2026 Cristian Cezar Moisés — GPL-3.0-or-later
+  SPDX-License-Identifier: GPL-3.0-or-later
+-->
+<html lang="en" class="accent-cyan">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Security Ops</title>
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/popup.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="app-brand">
+      <img class="app-logo" src="sec.svg" alt="Security Ops" width="32" height="32" />
+      <div class="app-title">
+        <h1 class="app-name">Security Ops</h1>
+        <div class="app-tagline">Privacy &amp; Security</div>
+      </div>
+    </div>
+    <div class="hdr-right">
+      <span class="shield-dot" id="shield-dot" title="Protection status"></span>
+      <div class="app-version" id="app-version" title="Extension version">—</div>
+    </div>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Sections">
+    <button class="tab-btn is-active" data-tab="dashboard" role="tab" aria-selected="true">
+      <span class="tab-icon" data-icon="shield"></span>
+      <span class="tab-text">Dashboard</span>
+    </button>
+    <button class="tab-btn" data-tab="settings" role="tab" aria-selected="false">
+      <span class="tab-icon" data-icon="gear"></span>
+      <span class="tab-text">Settings</span>
+    </button>
+    <button class="tab-btn" data-tab="logs" role="tab" aria-selected="false">
+      <span class="tab-icon" data-icon="list"></span>
+      <span class="tab-text">Logs</span>
+    </button>
+  </nav>
+
+  <section id="dashboard" class="tab-panel is-active" role="tabpanel">
+    <div class="ip-card" id="ip-card" hidden>
+      <div>
+        <div class="ip-card-label">Your IP Address</div>
+        <div class="ip-card-value" id="ip-value">-</div>
+      </div>
+      <button class="btn btn--small" id="ip-hide-btn" type="button">Hide</button>
+    </div>
+
+    <div class="hero-stat">
+      <div class="hero-stat-value" id="total-blocked">0</div>
+      <div class="hero-stat-label">Requests Blocked</div>
+    </div>
+
+    <div class="cat-grid">
+      <div class="cat-card" data-cat="ads" data-on="true">
+        <span class="cat-icon" data-icon="shield"></span>
+        <div class="cat-num" id="cat-ads">0</div><div class="cat-name">Ads</div>
+      </div>
+      <div class="cat-card" data-cat="trackers" data-on="true">
+        <span class="cat-icon" data-icon="eye"></span>
+        <div class="cat-num" id="cat-trackers">0</div><div class="cat-name">Trackers</div>
+      </div>
+      <div class="cat-card" data-cat="malware" data-on="true">
+        <span class="cat-icon" data-icon="bug"></span>
+        <div class="cat-num" id="cat-malware">0</div><div class="cat-name">Malware</div>
+      </div>
+      <div class="cat-card" data-cat="gambling" data-on="false">
+        <span class="cat-icon" data-icon="dice"></span>
+        <div class="cat-num" id="cat-gambling">0</div><div class="cat-name">Gambling</div>
+      </div>
+      <div class="cat-card" data-cat="adult" data-on="false">
+        <span class="cat-icon" data-icon="eyeoff"></span>
+        <div class="cat-num" id="cat-adult">0</div><div class="cat-name">Adult</div>
+      </div>
+      <div class="cat-card" data-cat="social" data-on="false">
+        <span class="cat-icon" data-icon="users"></span>
+        <div class="cat-num" id="cat-social">0</div><div class="cat-name">Social</div>
+      </div>
+      <div class="cat-card" data-cat="scripts" data-on="false">
+        <span class="cat-icon" data-icon="code"></span>
+        <div class="cat-num" id="cat-scripts">0</div><div class="cat-name">Scripts</div>
+      </div>
+      <div class="cat-card" data-cat="media" data-on="false">
+        <span class="cat-icon" data-icon="music"></span>
+        <div class="cat-num" id="cat-media">0</div><div class="cat-name">Media</div>
+      </div>
+      <div class="cat-card" data-cat="gigachad" data-on="false">
+        <span class="cat-icon" data-icon="flame"></span>
+        <div class="cat-num" id="cat-gigachad">0</div><div class="cat-name">Gigachad</div>
+      </div>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn" id="btn-show-ip" type="button">
+        <span class="btn-icon" data-icon="globe"></span>Show IP
+      </button>
+      <button class="btn" id="btn-clear-stats" type="button">
+        <span class="btn-icon" data-icon="broom"></span>Clear
+      </button>
+      <button class="btn" id="btn-update-filters" type="button">
+        <span class="btn-icon" data-icon="refresh"></span>Refresh
+      </button>
+    </div>
+    <div class="btn-row">
+      <button class="btn btn--danger btn--block" id="btn-panic" type="button">
+        <span class="btn-icon" data-icon="warn"></span>Panic — Clear &amp; Close All Tabs
+      </button>
+    </div>
+  </section>
+
+  <section id="settings" class="tab-panel" role="tabpanel">
+    <div class="card">
+      <div class="card-title"><span class="ic-wrap" data-icon="shield"></span>Blocking</div>
+      <label class="switch"><span class="switch-label"><span class="ic" data-icon="shield"></span>Block Ads</span><input class="switch-input" type="checkbox" data-setting="blockAds"></label>
+      <label class="switch"><span class="switch-label"><span class="ic" data-icon="eye"></span>Block Trackers</span><input class="switch-input" type="checkbox" data-setting="blockTrackers"></label>
+      <label class="switch"><span class="switch-label"><span class="ic" data-icon="bug"></span>Block Malware</span><input class="switch-input" type="checkbox" data-setting="blockMalware"></label>
+      <label class="switch"><span class="switch-label"><span class="ic" data-icon="dice"></span>Block Gambling</span><input class="switch-input" type="checkbox" data-setting="blockGambling"></label>
+      <label class="switch"><span class="switch-label"><span class="ic" data-icon="eyeoff"></span>Block Adult Content</span><input class="switch-input" type="checkbox" data-setting="blockAdult"></label>
+      <label class="switch"><span class="switch-label"><span class="ic" data-icon="users"></span>Block Social Media</span><input class="switch-input" type="checkbox" data-setting="blockSocial"></label>
+      <label class="switch"><span class="switch-label"><span class="ic" data-icon="code"></span>Block Bad JavaScript</span><input class="switch-input" type="checkbox" data-setting="blockBadJS"></label>
+      <label class="switch"><span class="switch-label"><span class="ic" data-icon="music"></span>Block Media (video/audio)</span><input class="switch-input" type="checkbox" data-setting="blockMedia"></label>
+      <label class="switch"><span class="switch-label"><span class="ic" data-icon="flame"></span>Gigachad AdBlock</span><input class="switch-input" type="checkbox" data-setting="blockGigachad"></label>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="ic-wrap" data-icon="lock"></span>Privacy</div>
+      <label class="switch"><span class="switch-label"><span class="ic" data-icon="broom"></span>Strip Tracking Params</span><input class="switch-input" type="checkbox" data-setting="stripTrackingParams"></label>
+      <label class="switch"><span class="switch-label"><span class="ic" data-icon="lock"></span>Enforce HTTPS</span><input class="switch-input" type="checkbox" data-setting="enforceHttps"></label>
+      <label class="switch"><span class="switch-label"><span class="ic" data-icon="globe"></span>Enable IP Lookup</span><input class="switch-input" type="checkbox" data-setting="ipLookupEnabled"></label>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="ic-wrap" data-icon="search"></span>Redirects</div>
+      <label class="switch"><span class="switch-label"><span class="ic" data-icon="search"></span>Google &rarr; SecurityOps</span><input class="switch-input" type="checkbox" data-setting="redirectGoogle"></label>
+      <label class="switch"><span class="switch-label"><span class="ic" data-icon="search"></span>Bing &rarr; SecurityOps</span><input class="switch-input" type="checkbox" data-setting="redirectBing"></label>
+      <label class="switch"><span class="switch-label"><span class="ic" data-icon="youtube"></span>YouTube &rarr; Invidious</span><input class="switch-input" type="checkbox" data-setting="redirectYouTube"></label>
+      <label class="switch"><span class="switch-label"><span class="ic" data-icon="chat"></span>Reddit &rarr; Redlib</span><input class="switch-input" type="checkbox" data-setting="redirectReddit"></label>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="ic-wrap" data-icon="moon"></span>Appearance</div>
+      <label class="switch"><span class="switch-label"><span class="ic" data-icon="moon"></span>Dark Theme on Sites</span><input class="switch-input" type="checkbox" data-setting="blackThemeEnabled"></label>
+      <label class="switch"><span class="switch-label"><span class="ic" data-icon="youtube"></span>YT Distraction-Free</span><input class="switch-input" type="checkbox" data-setting="youtubeFocusMode"></label>
+      <div class="field-row"><label id="accent-label">Accent</label></div>
+      <div class="swatch-grid" role="radiogroup" aria-labelledby="accent-label">
+        <button class="swatch sw-cyan is-selected" data-color="cyan" type="button" title="Cyan" aria-label="Cyan"></button>
+        <button class="swatch sw-teal" data-color="teal" type="button" title="Teal" aria-label="Teal"></button>
+        <button class="swatch sw-blue" data-color="blue" type="button" title="Blue" aria-label="Blue"></button>
+        <button class="swatch sw-purple" data-color="purple" type="button" title="Purple" aria-label="Purple"></button>
+        <button class="swatch sw-green" data-color="green" type="button" title="Green" aria-label="Green"></button>
+        <button class="swatch sw-amber" data-color="amber" type="button" title="Amber" aria-label="Amber"></button>
+        <button class="swatch sw-soft-green" data-color="soft-green" type="button" title="Soft Green" aria-label="Soft Green"></button>
+        <button class="swatch sw-soft-blue" data-color="soft-blue" type="button" title="Soft Blue" aria-label="Soft Blue"></button>
+        <button class="swatch sw-soft-yellow" data-color="soft-yellow" type="button" title="Soft Yellow" aria-label="Soft Yellow"></button>
+        <button class="swatch sw-soft-purple" data-color="soft-purple" type="button" title="Soft Purple" aria-label="Soft Purple"></button>
+        <button class="swatch sw-soft-violet" data-color="soft-violet" type="button" title="Soft Violet" aria-label="Soft Violet"></button>
+        <button class="swatch sw-white" data-color="white" type="button" title="White" aria-label="White"></button>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="ic-wrap" data-icon="proxy"></span>Proxy &amp; Tor</div>
+      <label class="switch"><span class="switch-label"><span class="ic" data-icon="proxy"></span>Enable Proxy</span><input class="switch-input" type="checkbox" id="t-proxy"></label>
+      <div class="field-row"><label for="proxy-host">Host</label><input type="text" class="input" id="proxy-host" placeholder="127.0.0.1"></div>
+      <div class="field-row"><label for="proxy-port">Port</label><input type="number" class="input" id="proxy-port" placeholder="9050" min="1" max="65535"></div>
+      <div class="field-row"><label for="proxy-scheme">Type</label>
+        <select id="proxy-scheme" class="select">
+          <option value="socks5">SOCKS5</option>
+          <option value="socks4">SOCKS4</option>
+          <option value="http">HTTP</option>
+          <option value="https">HTTPS</option>
+        </select>
+      </div>
+      <div class="proxy-status" id="proxy-status">Disconnected</div>
+      <div class="btn-row">
+        <button class="btn" id="btn-torando" type="button">
+          <span class="btn-icon" data-icon="onion"></span>TORANDO (Tor)
+        </button>
+        <button class="btn" id="btn-proxy-disconnect" type="button">Disconnect</button>
+      </div>
+      <div class="torando-status" id="torando-status">Tor: INACTIVE</div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="ic-wrap" data-icon="globe"></span>Whitelist</div>
+      <div class="whitelist-input-row">
+        <input type="text" class="input" id="whitelist-input" placeholder="example.com">
+        <button class="btn btn--primary" id="btn-add-whitelist" type="button">Add</button>
+      </div>
+      <ul class="whitelist-list" id="whitelist-list"></ul>
+    </div>
+
+    <div class="btn-row">
+      <button class="btn btn--block" id="btn-open-options" type="button">
+        <span class="btn-icon" data-icon="gear"></span>Open Full Settings
+      </button>
+    </div>
+  </section>
+
+  <section id="logs" class="tab-panel" role="tabpanel">
+    <div class="log-table" id="log-table" aria-live="polite">
+      <div class="log-row is-header"><div>Time</div><div>URL</div><div>Reason</div></div>
+      <div id="log-entries"><div class="log-empty">No blocked requests yet.</div></div>
+    </div>
+    <div class="btn-row">
+      <button class="btn" id="btn-download-logs" type="button">
+        <span class="btn-icon" data-icon="download"></span>Download
+      </button>
+      <button class="btn" id="btn-clear-logs" type="button">
+        <span class="btn-icon" data-icon="broom"></span>Clear
+      </button>
+    </div>
+  </section>
+
+  <div class="status-banner" id="status-banner" role="status" aria-live="polite"></div>
+
+  <footer class="app-footer">
+    <a href="index.html" target="_blank" rel="noopener">Home</a>
+    <a href="https://extension.securityops.co/privacy-policy.html" target="_blank" rel="noopener">Privacy</a>
+    <a href="https://wiki.securityops.co" target="_blank" rel="noopener">Docs</a>
+    <a href="https://linkedin.com/in/cristiancezarmoises/" target="_blank" rel="noopener">Developer</a>
+  </footer>
+
+  <script src="css/icons.js"></script>
+  <script src="stable-popup.js"></script>
+</body>
+</html>

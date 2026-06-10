@@ -1,0 +1,113 @@
+{
+  "manifest_version": 3,
+  "name": "Security Ops",
+  "version": "10.1.0",
+  "description": "Privacy-first hardening: ad/tracker/malware blocking, site dark theme, search redirects, proxy & Tor support. GPL-3.0.",
+  "homepage_url": "https://extension.securityops.co",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_popup": "stable-popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    },
+    "default_title": "Security Ops"
+  },
+  "permissions": [
+    "storage",
+    "declarativeNetRequest",
+    "declarativeNetRequestFeedback",
+    "proxy",
+    "tabs",
+    "activeTab",
+    "browsingData",
+    "webNavigation",
+    "alarms"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "stable-content.js",
+        "secops-reporter.js"
+      ],
+      "css": [
+        "dark-theme.css"
+      ],
+      "run_at": "document_start",
+      "all_frames": false
+    },
+    {
+      "matches": [
+        "*://*.youtube.com/*",
+        "*://*.youtube-nocookie.com/*"
+      ],
+      "js": [
+        "youtube-adblock.js"
+      ],
+      "css": [
+        "youtube-adblock.css"
+      ],
+      "run_at": "document_start",
+      "all_frames": true
+    },
+    {
+      "matches": [
+        "*://*.youtube.com/*",
+        "*://*.youtube-nocookie.com/*"
+      ],
+      "js": [
+        "youtube-adblock-page.js"
+      ],
+      "run_at": "document_start",
+      "all_frames": true,
+      "world": "MAIN"
+    }
+  ],
+  "options_ui": {
+    "page": "stable-options.html",
+    "open_in_tab": true
+  },
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "static_rules",
+        "enabled": true,
+        "path": "rules.json"
+      },
+      {
+        "id": "youtube_rules",
+        "enabled": true,
+        "path": "rules-youtube.json"
+      }
+    ]
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "youtube-adblock-page.js"
+      ],
+      "matches": [
+        "*://*.youtube.com/*",
+        "*://*.youtube-nocookie.com/*"
+      ]
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'none'"
+  },
+  "minimum_chrome_version": "120",
+  "background": {
+    "service_worker": "stable-background.js"
+  }
+}

@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<!--
+  Security Ops — Privacy-focused browser extension
+  Copyright (C) 2024-2026 Cristian Cezar Moises <ethicalhacker@riseup.net>
+  SPDX-License-Identifier: GPL-3.0-or-later
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Security Ops — Privacy-First Browser Extension</title>
+  <meta name="description" content="Open-source browser extension blocking ads, trackers, malware. Site-wide dark theme. Tor proxy. GPL-3.0.">
+  <style>
+    :root {
+      --bg-0: #000000;
+      --bg-1: #0a0e14;
+      --bg-2: #11161e;
+      --border: rgba(77, 208, 225, 0.18);
+      --accent: #4dd0e1;
+      --accent-dim: #2dd4bf;
+      --accent-glow: rgba(77, 208, 225, 0.25);
+      --text-1: #e6edf3;
+      --text-2: #a8b3bd;
+      --text-3: #6e7681;
+      --danger: #f87171;
+      --success: #6ee7b7;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: var(--bg-0);
+      color: var(--text-1);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ===== NAVBAR ===== */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 0;
+    }
+    .nav-container {
+      max-width: 1200px; margin: 0 auto; padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none; color: var(--text-1);
+    }
+    .nav-logo { width: 36px; height: 36px; border-radius: 8px; }
+    .nav-title { font-size: 18px; font-weight: 700; letter-spacing: 0.3px; }
+    .nav-tagline { font-size: 11px; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.6px; margin-top: -2px; }
+    .nav-links { display: flex; align-items: center; gap: 24px; }
+    .nav-links a {
+      color: var(--text-2); text-decoration: none; font-size: 14px;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-cta {
+      background: var(--accent);
+      color: var(--bg-0); padding: 8px 18px; border-radius: 6px;
+      font-weight: 600; transition: all 0.2s;
+    }
+    .nav-cta:hover { background: var(--accent-dim); transform: translateY(-1px); color: var(--bg-0); }
+
+    /* ===== HERO ===== */
+    .hero {
+      padding: 100px 24px 80px;
+      text-align: center;
+      background: radial-gradient(ellipse at top, var(--accent-glow) 0%, transparent 60%);
+      position: relative;
+    }
+    .hero-logo {
+      width: 100px; height: 100px;
+      margin-bottom: 24px;
+      filter: drop-shadow(0 0 20px var(--accent-glow));
+    }
+    .hero h1 {
+      font-size: clamp(36px, 6vw, 56px);
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, var(--text-1), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-subtitle {
+      font-size: 20px;
+      color: var(--text-2);
+      max-width: 720px;
+      margin: 0 auto 32px;
+    }
+    .hero-version {
+      display: inline-block;
+      font-family: ui-monospace, 'SF Mono', monospace;
+      font-size: 12px; color: var(--accent);
+      padding: 4px 12px; border-radius: 100px;
+      background: var(--bg-2); border: 1px solid var(--border);
+      margin-bottom: 24px;
+    }
+    .hero-cta-row {
+      display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+      margin-top: 32px;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px; border-radius: 8px;
+      font-size: 15px; font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+      border: 1px solid transparent;
+    }
+    .btn-primary {
+      background: var(--accent); color: var(--bg-0);
+      box-shadow: 0 4px 24px var(--accent-glow);
+    }
+    .btn-primary:hover { background: var(--accent-dim); transform: translateY(-2px); }
+    .btn-secondary {
+      background: var(--bg-2); color: var(--text-1);
+      border-color: var(--border);
+    }
+    .btn-secondary:hover { background: var(--bg-1); border-color: var(--accent); }
+
+    /* ===== STATS BAR ===== */
+    .stats-bar {
+      max-width: 1000px; margin: -40px auto 0;
+      background: var(--bg-1); border: 1px solid var(--border);
+      border-radius: 16px;
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      padding: 24px;
+      box-shadow: 0 8px 40px rgba(77, 208, 225, 0.08);
+    }
+    .stat { text-align: center; padding: 8px; }
+    .stat-num {
+      font-size: 28px; font-weight: 800; color: var(--accent);
+      font-family: ui-monospace, 'SF Mono', monospace;
+    }
+    .stat-label {
+      font-size: 12px; color: var(--text-3);
+      text-transform: uppercase; letter-spacing: 0.6px;
+      margin-top: 4px;
+    }
+    @media (max-width: 600px) {
+      .stats-bar { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    }
+
+    /* ===== SECTIONS ===== */
+    section {
+      padding: 80px 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .section-eyebrow {
+      display: inline-block;
+      font-size: 12px; font-weight: 700;
+      color: var(--accent); text-transform: uppercase;
+      letter-spacing: 1.5px; margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 800; letter-spacing: -0.5px;
+      margin-bottom: 16px;
+    }
+    .section-lead {
+      font-size: 18px; color: var(--text-2);
+      max-width: 720px; margin-bottom: 48px;
+    }
+
+    /* ===== FEATURES GRID ===== */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .feature {
+      background: var(--bg-1); border: 1px solid var(--border);
+      border-radius: 12px; padding: 28px;
+      transition: all 0.2s;
+    }
+    .feature:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px var(--accent-glow);
+    }
+    .feature-icon {
+      width: 48px; height: 48px;
+      background: var(--bg-2);
+      border-radius: 10px;
+      display: grid; place-items: center;
+      margin-bottom: 16px;
+      color: var(--accent);
+    }
+    .feature-icon svg { width: 24px; height: 24px; stroke: currentColor; fill: none; stroke-width: 2; }
+    .feature h3 { font-size: 18px; margin-bottom: 8px; }
+    .feature p { color: var(--text-2); font-size: 14px; }
+
+    /* ===== INSTALL ===== */
+    .install-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .install-card {
+      background: var(--bg-1); border: 1px solid var(--border);
+      border-radius: 12px; padding: 32px;
+      text-align: center;
+    }
+    .install-card h3 {
+      font-size: 20px; margin-bottom: 12px;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+    }
+    .install-steps {
+      text-align: left;
+      list-style: none;
+      counter-reset: step;
+      margin: 16px 0;
+    }
+    .install-steps li {
+      counter-increment: step;
+      padding: 8px 0 8px 32px;
+      position: relative;
+      color: var(--text-2);
+      font-size: 14px;
+    }
+    .install-steps li::before {
+      content: counter(step);
+      position: absolute; left: 0; top: 8px;
+      width: 22px; height: 22px;
+      background: var(--accent); color: var(--bg-0);
+      border-radius: 50%;
+      display: grid; place-items: center;
+      font-size: 11px; font-weight: 700;
+    }
+
+    /* ===== CODE BLOCK ===== */
+    .code-block {
+      background: var(--bg-2); border: 1px solid var(--border);
+      border-radius: 6px; padding: 12px 16px;
+      font-family: ui-monospace, 'SF Mono', monospace;
+      font-size: 13px; color: var(--accent);
+      text-align: left; margin-top: 16px;
+      overflow-x: auto;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 48px 24px 32px;
+      margin-top: 80px;
+      text-align: center;
+      background: var(--bg-1);
+    }
+    .footer-links {
+      display: flex; justify-content: center; gap: 32px;
+      margin-bottom: 24px; flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: var(--text-2); text-decoration: none; font-size: 14px;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--accent); }
+    .footer-copy {
+      color: var(--text-3); font-size: 13px;
+      margin-top: 8px;
+    }
+    .footer-copy a { color: var(--text-2); text-decoration: none; }
+    .footer-copy a:hover { color: var(--accent); }
+    .footer-license {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 4px 12px;
+      background: var(--bg-2); border: 1px solid var(--border);
+      border-radius: 100px;
+      font-family: ui-monospace, monospace;
+      font-size: 11px; color: var(--success);
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-container">
+      <a href="#top" class="nav-brand">
+        <img src="sec.svg" class="nav-logo" alt="Security Ops">
+        <div>
+          <div class="nav-title">Security Ops</div>
+          <div class="nav-tagline">Privacy &amp; Security</div>
+        </div>
+      </a>
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#install">Install</a>
+        <a href="privacy-policy.html">Privacy</a>
+        <a href="https://github.com/cristiancmoises/securityops" target="_blank" rel="noopener" class="nav-cta">GitHub</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero" id="top">
+    <img src="sec.svg" class="hero-logo" alt="Security Ops Logo">
+    <div class="hero-version">v5.0.0 • GPL-3.0 • Open Source</div>
+    <h1>Take back control of your browser</h1>
+    <p class="hero-subtitle">
+      A privacy-first browser extension that blocks ads, trackers, and malware
+      across Chrome, Edge, and Firefox — with a built-in dark theme,
+      Tor proxy support, and full YouTube ad-blocking.
+    </p>
+    <div class="hero-cta-row">
+      <a href="#install" class="btn btn-primary">Install Free</a>
+      <a href="https://github.com/cristiancmoises/securityops" target="_blank" rel="noopener" class="btn btn-secondary">Source Code</a>
+    </div>
+  </section>
+
+  <div class="stats-bar">
+    <div class="stat">
+      <div class="stat-num">5,000+</div>
+      <div class="stat-label">Domains Blocked</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">7</div>
+      <div class="stat-label">Threat Categories</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">3</div>
+      <div class="stat-label">Browsers Supported</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">0</div>
+      <div class="stat-label">Telemetry Sent</div>
+    </div>
+  </div>
+
+  <section id="features">
+    <div class="section-eyebrow">Features</div>
+    <h2 class="section-title">Everything you need, nothing you don't</h2>
+    <p class="section-lead">
+      Built on Manifest V3 with state-of-the-art security hardening.
+      No remote code execution. No telemetry. Just protection.
+    </p>
+
+    <div class="features">
+      <div class="feature">
+        <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h3>Block Ads &amp; Trackers</h3>
+        <p>Hagezi DNS blocklists with 7 categories: ads, trackers, malware, gambling, adult, social, and aggressive blocking modes.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></div>
+        <h3>Site-Wide Dark Theme</h3>
+        <p>Apply a dark theme to every website you visit, with 6 accent colors. No more retina-burning white pages.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="13" rx="7" ry="8"/><ellipse cx="12" cy="13" rx="4" ry="5"/></svg></div>
+        <h3>Tor &amp; Proxy Support</h3>
+        <p>One-click TORANDO mode routes traffic through your local Tor SOCKS5 proxy. Full SOCKS4/5, HTTP, HTTPS support.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg></div>
+        <h3>YouTube Ad-Block</h3>
+        <p>Multi-layer YouTube ad blocking: network rules, player JSON scrubbing, DOM pruning, and auto-skip for unblocked ads.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M19.4 6.6L8 18l-4-4"/><path d="M14 11.4L19.4 6 22 8.6 16.6 14"/></svg></div>
+        <h3>Strip Tracking Params</h3>
+        <p>Auto-removes utm_*, fbclid, gclid, and 12 other tracking parameters from every URL before navigation.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div>
+        <h3>Search &amp; Site Redirects</h3>
+        <p>Optional redirects: Google to SecurityOps Web, YouTube to Invidious, Reddit to Redlib. Privacy-respecting alternatives.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="install">
+    <div class="section-eyebrow">Get Started</div>
+    <h2 class="section-title">Install in 2 minutes</h2>
+    <p class="section-lead">
+      Free forever. Open source under GPL-3.0. No account required.
+      No telemetry. No data collection.
+    </p>
+
+    <div class="install-grid">
+      <div class="install-card">
+        <h3>Chrome / Edge</h3>
+        <ol class="install-steps">
+          <li>Open <code>chrome://extensions</code></li>
+          <li>Enable Developer Mode</li>
+          <li>Load Unpacked → select <code>chrome/</code> folder</li>
+        </ol>
+        <a href="https://github.com/cristiancmoises/securityops/releases" target="_blank" rel="noopener" class="btn btn-primary" style="width:100%;justify-content:center;">Download</a>
+      </div>
+      <div class="install-card">
+        <h3>Firefox</h3>
+        <ol class="install-steps">
+          <li>Open <code>about:debugging#/runtime/this-firefox</code></li>
+          <li>Click "Load Temporary Add-on"</li>
+          <li>Select <code>firefox/manifest.json</code></li>
+        </ol>
+        <a href="https://github.com/cristiancmoises/securityops/releases" target="_blank" rel="noopener" class="btn btn-primary" style="width:100%;justify-content:center;">Download</a>
+        <p style="font-size:12px;color:var(--text-3);margin-top:12px;">Requires Firefox ≥ 142</p>
+      </div>
+      <div class="install-card">
+        <h3>Build From Source</h3>
+        <ol class="install-steps">
+          <li>Clone the GitHub repo</li>
+          <li>Open the appropriate folder</li>
+          <li>Inspect the source &amp; load unpacked</li>
+        </ol>
+        <div class="code-block">git clone github.com/<br>cristiancmoises/securityops</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="https://github.com/cristiancmoises/securityops" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://wiki.securityops.co" target="_blank" rel="noopener">Documentation</a>
+      <a href="https://linkedin.com/in/cristiancezarmoises/" target="_blank" rel="noopener">Developer</a>
+    </div>
+    <div class="footer-copy">
+      Copyright © 2024-2026
+      <a href="https://linkedin.com/in/cristiancezarmoises/" target="_blank" rel="noopener">Cristian Cezar Moises</a>
+      &lt;ethicalhacker@riseup.net&gt;
+    </div>
+    <div class="footer-license">GPL-3.0-or-later • Free Software</div>
+  </footer>
+
+</body>
+</html>
