@@ -4,6 +4,9 @@ dist/
 *.xpi
 *.crx
 
+# Chrome-generated DNR ruleset cache (appears under src/ when loaded unpacked)
+src/_metadata/
+
 # Tooling / editor state
 .claude/
 .vscode/

@@ -35,6 +35,9 @@ copy_tree() { # $1 = target dir
   mkdir -p "$1"
   cp -r "$SRC"/. "$1"/
   cp LICENSE "$1"/LICENSE
+  # Drop Chrome's generated DNR ruleset cache if it leaked into src/ from an
+  # unpacked load; the browser regenerates it and it must not ship in the zip.
+  rm -rf "$1/_metadata"
 }
 
 # ---- Chromium targets (Chrome / Edge): manifest used as-is ----

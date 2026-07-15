@@ -17,7 +17,7 @@
  *
  * SPDX-License-Identifier: GPL-3.0-or-later
  *
- * stable-background.js — Service worker / event page (v10.1.0)
+ * stable-background.js — Service worker / event page (v10.1.1)
  *
  * v4.1.0 hardening additions:
  *   - URL shape validation in recordBlock() and reportBlockedResource (defense

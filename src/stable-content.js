@@ -10,7 +10,7 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-// stable-content.js — Security Ops v10.1.0 — Site dark theme + font color
+// stable-content.js — Security Ops v10.1.1 — Site dark theme + font color
 //
 // v8.0 changes:
 //   - Bug 6: deactivateTheme now WALKS DOM and removes inline styles we set,
@@ -434,5 +434,5 @@
     });
   }
 
-  console.log('[SecOps] content v10.1.0 active on ' + location.hostname + ' (FF=' + IS_FIREFOX + ')');
+  console.log('[SecOps] content v10.1.1 active on ' + location.hostname + ' (FF=' + IS_FIREFOX + ')');
 })();

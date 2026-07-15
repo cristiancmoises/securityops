@@ -10,7 +10,7 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-// stable-popup.js — Security Ops v10.1.0
+// stable-popup.js — Security Ops v10.1.1
 // FIXES from v3.6 user feedback:
 //  - Settings disappearing: pause refresh while user is interacting with controls.
 //  - Cross-browser sendMessage: Firefox returns Promise, Chrome uses callback. Handle both.

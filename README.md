@@ -105,7 +105,37 @@ LICENSE                 GPL-3.0
 See [SECURITY.md](SECURITY.md). Report vulnerabilities to
 **ethicalhacker@riseup.net**.
 
+## Permissions
+
+Every permission below maps to a specific user-facing feature; the extension
+requests nothing it does not use. These justifications are the text supplied to
+the Chrome Web Store, Edge Add-ons and Firefox AMO review dashboards.
+
+| Permission | Why it is needed |
+|------------|------------------|
+| `storage` | Persist the user's settings, whitelist and proxy configuration locally and via `storage.sync`. |
+| `declarativeNetRequest` | Block ads, trackers and malware with static + dynamic rules. The browser matches rules itself; the extension never reads request contents. |
+| `declarativeNetRequestFeedback` | Populate the logs view with which rule blocked a request, for user-visible transparency and debugging. |
+| `proxy` | Route traffic through a user-configured SOCKS/HTTP proxy, and the one-click Tor (`127.0.0.1:9050`) button. |
+| `tabs` / `activeTab` | Apply theming and redirects to the current tab and, for the panic button, close open tabs. |
+| `browsingData` | The panic button wipes browsing data (cache, cookies, history) in one click. |
+| `webNavigation` | Detect navigations early so the dark theme and redirects apply at `document_start`. |
+| `alarms` | Schedules the periodic blocklist refresh. The extension re-downloads its domain blocklists every 24 hours. Because a Manifest V3 service worker is terminated when idle, `chrome.alarms` is the only reliable way to run that refresh on schedule. A single repeating alarm is created at install and triggers the update job. It is used for nothing else: no polling of user activity, no tracking, no network requests other than the blocklist download itself. |
+| `<all_urls>` (host) | Content scripts (dark theme, tracking-parameter stripping, YouTube ad blocking) and site-wide DNR blocking must run on every site the user visits. |
+
+No permission is used for analytics or telemetry. See `src/privacy-policy.html`.
+
 ## Changelog
+
+### v10.1.1 — 2026-07-15
+
+- **Docs:** documented every requested permission and its store-submission
+  justification in the new [Permissions](#permissions) section — including the
+  `alarms` permission, which schedules the 24-hour blocklist refresh (the only
+  reliable way to run it on an idle-terminated MV3 service worker).
+- **Build:** `build.sh` now excludes Chrome's generated `_metadata/` ruleset
+  cache from packaged artifacts; repackaged Chrome, Edge and Firefox zips.
+- No functional code changes — the `alarms` refresh job shipped in 10.1.0.
 
 ### v10.1.0 — 2026-06-10
 

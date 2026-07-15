@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Security Ops",
-  "version": "10.1.0",
+  "version": "10.1.1",
   "description": "Privacy-first hardening: ad/tracker/malware blocking, site dark theme, search redirects, proxy & Tor support. GPL-3.0.",
   "homepage_url": "https://extension.securityops.co",
   "icons": {

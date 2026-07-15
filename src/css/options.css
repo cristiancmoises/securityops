@@ -3,7 +3,7 @@
  * Copyright (c) 2024-2026 Cristian Cezar Moisés — GPL-3.0-or-later
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
-/* css/options.css — Security Ops v10.1.0 full-page settings */
+/* css/options.css — Security Ops v10.1.1 full-page settings */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html, body { background: var(--surface-0); color: var(--text-1); font: 14px/1.5 var(--font-stack); min-height: 100vh; }
 :focus-visible { outline: none; box-shadow: var(--ring); border-radius: var(--radius-sm); }
